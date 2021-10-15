@@ -1,0 +1,22 @@
+<div class="column contain__admin">
+    <div class="row title__admin">
+        <div class="column"><h3 id="admin_row">Pseudo</h3></h3></div>
+        <div class="column"><h3 id="admin_row">Email</h3></div>
+        <div class="column"><h3 id="admin_row">Mot de passe</h3></div>
+        <div class="column"></div>
+        
+    </div>
+    <%=for admin <- @admins do %>    
+    <div class="row content__admin">
+        <div class="column"> <%= admin.username %> </div>
+        <div class="column"> <%= admin.email_admin %> </div>
+        <div class="column"> <%= admin.mdp_admin %> </div>    
+        <div class="column">
+            <form action="<%= Routes.admin_path(@conn, :modif, admin: admin.id) %>" method="post">
+                <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+                <button type="submit"class="btn__admin"><i class="fas fa-users-cog fa-3x"></i></button>
+            </form>
+        </div>
+    </div>
+    <% end %>
+</div>

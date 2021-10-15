@@ -1,0 +1,41 @@
+<div class="row">
+  <!-- début aside bar -->
+  <section class="col col-lg-2">
+    <div class="sidebar">
+      <%= for categorie <- @categories do %>
+        <div class="item">
+            <input type="checkbox" id="<%= categorie.id_cat %>"/>
+          <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/> <label for="<%= categorie.id_cat %>"><%= categorie.nom_cat %></label>
+          
+          <%= for souscategorie <- @souscategories do %>
+            <%= if souscategorie.id_cat == categorie.id_cat do %>
+              <ul>
+                <li><a href="#"><%= souscategorie.nom_souscat %></a></li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+     </div>
+  </section>
+  <!-- fin aside bar -->
+  <!-- début contenue principale -->
+  <section class="col-sm all" >
+    <div class="article">
+      <%= for produit <- @produits do %>
+          <div class="produit" >
+            <img src="<%= Routes.static_path(@conn, "/images/jouet.png") %>" >
+            <h3 class="detail">ACTIVITES MOBILE +3MOIS </h3><br>
+            <div class="column containt">
+                <h4 class="prix">€46,00</h4>
+                <a href="#" class="ajout">
+                    <img src="<%= Routes.static_path(@conn, "/images/panier.png") %>" >
+                </a>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    </section>
+    <!-- fin contenue principale -->
+    <!--fin contenue  -->
+</div>

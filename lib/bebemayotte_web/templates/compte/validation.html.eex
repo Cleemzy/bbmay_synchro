@@ -1,0 +1,39 @@
+<div class="product">
+  <%= @statut_commande %>
+  <%= if @statut_commande == 1 do %>
+      <div class="validation_commande">
+          <h2>Validation de la commande</h2>
+          <p>Si vous rencontrez des problèmes sur l’enregistrement, veuillez nous contacter immédiatement au 0977 19 62 50 (non surtaxé).</p>
+          <div class="detail_commande">
+              <ul>
+
+                  <li class="num_commande">
+                      Numéro de commande :
+                      <strong><%= @commande["numero"] %></strong>
+                  </li>
+                    <li class="date_commande">
+                      Date :
+                      <strong><%= @commande["date"] %></strong>
+                  </li>
+                    <li class="total_commande">
+                      total :
+                      <strong><%= @commande["total"] %></strong>
+                  </li>
+                    <li class="mode_payement">
+                      moyen de payement :
+                      <strong>Transaction en ligne with Stripe.</strong>
+                  </li>
+              </ul>
+          </div>
+          <form method="post" action="/validate_command">
+            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+            <button class="btn" type="submit">Continuer</button>
+        </form>
+
+      </div>
+  <% else %>
+      <div class="validation_commande">
+        <p>Vous n'avez pas encore de commande</p>
+      </div>
+  <% end %>
+</div>

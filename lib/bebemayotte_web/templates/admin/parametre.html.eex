@@ -1,0 +1,9 @@
+  <fieldset class="rupture">
+    <label for="coupon_question">Gestion des produits en rupture de stock</label>
+        <div>
+            <input class="coupon_question" type="checkbox" name="coupon_question" value="1" />
+            <span class="item-text">Afficher les produits en rupture</span>
+        </div>
+         
+        
+   </fieldset>

@@ -1,0 +1,27 @@
+<div class="compte_admin">
+
+    <a class="card_compte" href="/add">
+        <div>
+            <h1>Ajout</h1>
+            <i class="fas fa-user-plus "></i>
+        </div>
+    </a>
+    <a class="card_compte" href="/delete">
+        <div>
+            <h1>Suppression</h1>
+            <i class="fas fa-user-times "></i>
+        </div>
+    </a>
+    <a class="card_compte" href="/edit">
+        <div>
+            <h1>Modification</h1>
+            <i class="fas fa-user-edit "></i>
+        </div>
+    </a>
+    <a class="card_compte"  href="/show">
+        <div>
+            <h1>Tous les admins</h1>
+            <i class="fas fa-user-shield "></i>
+        </div>
+    </a>
+</div>

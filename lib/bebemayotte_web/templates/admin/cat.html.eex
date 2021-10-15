@@ -1,0 +1,14 @@
+<div class="column contain__admin">
+    <div class="row title__admin">
+        <div class="column"><h3 id="admin_row">id catégories</h3></div>
+        <div class="column"><h3 id="admin_row">Nom catégories</h3></div>
+        
+    </div>
+    <%=for categorie <- @categories do %>    
+    <div class="row content__admin">
+        <div class="column" id="title"> <%= categorie.id_cat %> </div> 
+        <div class="column" id="title"> <%= categorie.nom_cat %> </div>    
+       
+    </div>
+    <% end %>
+</div>

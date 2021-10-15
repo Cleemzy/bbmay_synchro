@@ -1,0 +1,34 @@
+<div class=" product">
+    <div class="top">
+        <img src="<%= Routes.static_path(@conn, "/images/top.png") %>" >
+    </div>
+    <div class="box-connexion">
+        <h1>CONNEXION</h1>
+        <p> Vous n’avez pas de compte? <a href="/inscription" class="link">Incsrivez- vous</a></p>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info_reussite) %></p>
+        <%= form_for @conn, Routes.page_path(@conn, :connexion_user), [method: :post], fn f -> %>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/email-icon.png") %>">
+                <%= text_input f, :identifiant, placeholder: "Entrer votre Adresse e-mail ou votre identifiant" %>
+            </div>
+            <div class="mdp">
+                <img src="<%= Routes.static_path(@conn, "/images/unlock-icon.png") %>">
+                <%= password_input f, :motdepasse, placeholder: "Entrer votre mot de passe" %>
+                <i class="material-icons">visibility_off</i>
+            </div>
+            <div class="row block">
+                <div class="column lien">
+                    <a class="link">Mot de passe oublier?</a> 
+                </div>   
+                <div class="column check">
+                    <input type="checkbox" name="remember">
+                    <label for="remember" class="remember">Se souvenir de moi</label>
+                </div>
+            </div>
+            <%= submit "CONNEXION", class: "btn" %>
+        <% end %>
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png") %>" >
+    </div>
+</div>

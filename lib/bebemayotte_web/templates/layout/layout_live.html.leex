@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <title>Bbmay -Mayotte</title>
+    <link rel="icon" href="<%= Routes.static_path(@socket, "/images/b.png") %>"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="<%= Routes.static_path(@socket, "/css/app.css") %>"/>
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script defer type="text/javascript" src="<%= Routes.static_path(@socket, "/js/app.js") %>"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="logo"><img src="<%= Routes.static_path(@socket, "/images/bbmay.png") %>" ></div>
+
+          <%# MENU AVEC CATEGORIE ----------------------------------------------------------------------------------------------------------- %>
+
+        <ul class="menu">
+          <li class="menu-item"><a href="/">Accueil</a></li>
+          <li class="menu-item">
+            <a href="/produit">Boutique</a>
+              <ul>
+                <%= for categorie <- @categories do %>
+                  <li><a href="/produit/<%= categorie.nom_cat %>"><%= categorie.nom_cat %></a></li>
+                <% end %>
+              </ul>
+          </li>
+          <li class="menu-item">
+            <%= if is_nil(@user) do %>
+              <a href="/connexion">Se connecter</a>
+            <% else %>
+              <a href="/account">Mon compte</a>
+            <% end %>
+          </li>
+          <li class="menu-item"><a href="/contact">Contact</a></li>
+        </ul>
+
+
+
+          <%# ----------------------------------------------------------------------------------------------------------------------------------------------- %>
+       <div class="search">
+        <form method="post" class="form__search" action="<%= Routes.page_path(@socket, :search) %>">
+            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+            <%= if is_nil(@search) or @search == "" do %>
+            <input type="search" name="search" placeholder="Recherche des produits...">
+            <% else %>
+            <input type="search" name="search" placeholder="Recherche des produits..." value="<%= @search %>">
+            <% end %>
+            <button type="submit" class="loup"><i class="fas fa-search "></i></button>
+
+
+        </form>
+          <div class="recherche">
+            <a href="/panier"><i  class='fab panier '>&#xe057;</i></a>
+            <a href="/question"><i  class='fas question'>&#xf059;</i></a>
+          </div>
+        </div>
+
+      </div>
+    </header>
+    <main role="main" class="container">
+      <%= @inner_content %>
+    </main>
+
+  </body>
+</html>

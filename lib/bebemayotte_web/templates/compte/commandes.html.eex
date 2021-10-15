@@ -1,0 +1,51 @@
+<div class="product">
+	<div class="compte">
+		<div class="containe">
+			<nav>
+				<ul class="mcd-menu">
+					<li>
+						<a href="/account" class="active">
+							<strong>Tableau de bord</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/commandes" class="active" id="active">
+							<strong>Commandes</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/download"class="active">
+							<strong>Téléchargement</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/adresse"class="active">
+							<strong>Adresse</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/detail"class="active">
+							<strong>Détail du compte</strong>
+						</a>
+					</li>
+					<li>
+						<%= form_for @conn, Routes.compte_path(@conn, :deconnexion), [method: :delete], fn f -> %>
+							<%= hidden_input f, :hidden %>
+							<%= submit "Déconnexion", class: "btn_" %>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="contenue-compte">
+            <div class="vide">
+                <img src="<%= Routes.static_path(@conn, "/images/online-shop.png") %>"> <h3>Aucune commande n’a encore été passée.</h3>
+            </div>
+            <div class="bouton-retour">
+                <button type="submit" class="retour">
+                    Parcourir les produits
+                </button>
+            </div>
+		</div>
+	</div>
+</div>

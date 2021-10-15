@@ -1,0 +1,42 @@
+<div class="row">
+  <!-- début aside bar -->
+  <section class="col col-lg-2">
+    <div class="sidebar">
+      <%= for categorie <- @categories do %>
+        <div class="item">
+            <input type="checkbox" id="A"/>
+          <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/> <label for="A"><%= Enum.at(categorie, 1) %></label>
+
+          <ul>
+            <li><a hred="#">  111 </a> </li>
+            <li><a hred="#"> Arrivage </a> </li>
+          </ul>
+        </div>
+      <% end %>
+     </div>
+  </section>
+  <!-- fin aside bar -->
+  <!-- début contenue principale -->
+  <section class="col-sm all" >
+    <div class="article">
+      <div class="produit" >
+        <img src="<%= Routes.static_path(@conn, "/images/jouet.png") %>" >
+        <h3 class="detail">ACTIVITES MOBILE +3MOIS </h3><br>
+        <div class="column containt">
+            <h4 class="prix">€46,00</h4>
+            <a href="#" class="ajout">
+                <img src="<%= Routes.static_path(@conn, "/images/panier.png") %>" >
+            </a>
+        </div>
+      </div>
+      <div class="produit" >
+
+      </div>
+      <div class="produit" >
+
+      </div>
+    </div>
+    </section>
+    <!-- fin contenue principale -->
+    <!--fin contenue  -->
+</div>

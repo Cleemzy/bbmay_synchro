@@ -1,0 +1,138 @@
+<div class="product">
+    <div class="top">
+        <img src="<%= Routes.static_path(@conn, "/images/top.png") %>" >
+    </div>
+    <div class="box-inscri">
+        <h1>INSCRIPTION</h1>
+        <p> Si vous rencontrez des problèmes sur l’enregistrement, <br>
+            veuillez nous contacter immédiatement au 0977 19 62 50 (non surtaxé)</p>
+        <form method="post" action="">
+            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <input type="text" name="prenom" placeholder="Entrer votre Prénom" required>
+            </div>
+            <div class="mdp">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <input type="text" name="nom" placeholder="Entrer votre Nom" required>
+                
+            </div>
+        <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/flag-icon.png") %>">
+                <select name="pays" id="pays" required>
+                    <option hidden >selectionner ici...</option>
+                    <option value="Mayotte">Mayotte</option>
+                </select>
+                <label for="pays"></label>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/place-icon.png") %>">
+                <select name="ville" id="pays" >
+                    <option value="AJANGOUA">AJANGOUA</option>
+                    <option value="BAMBO-EST">BAMBO-EST</option>
+                    <option value="BAMBO-OUEST">BAMBO-OUEST</option>
+                    <option value="BANDRABOUA">BANDRABOUA</option>
+                    <option value="BANDRéLé">BANDRéLé</option>
+                    <option value="BARAKANI">BARAKANI</option>
+                    <option value="BOUYOUNI">BOUYOUNI</option>
+                    <option value="BOUéNI">BOUéNI</option>
+                    <option value="CHEMBENYOUBA">CHEMBENYOUBA</option>
+                    <option value="CHICONI">CHICONI</option>
+                    <option value="CHIRONGUI">CHIRONGUI</option>
+                    <option value="CHOUNGUI">CHOUNGUI</option>
+                    <option value="COCONI">COCONI</option>
+                    <option value="COMBANI">COMBANI</option>
+                    <option value="DAPANI">DAPANI</option>
+                    <option value="DEMBéNI">DEMBéNI</option>
+                    <option value="DZAOUDZI">DZAOUDZI</option>
+                    <option value="DZOUMOGNE">DZOUMOGNE</option>
+                    <option value="HAGNOUNDROU">HAGNOUNDROU</option>
+                    <option value="HAMJAGO">HAMJAGO</option>
+                    <option value="HAMOURO">HAMOURO</option>
+                    <option value="HANDREMA">HANDREMA</option>
+                    <option value="ILONI">ILONI</option>
+                    <option value="KAHANI">KAHANI</option>
+                    <option value="KANGANI">KANGANI</option>
+                    <option value="KANI-KéLI">KANI-KéLI</option>
+                    <option value="KANIBé">KANIBé</option>
+                    <option value="KAVANI">KAVANI</option>
+                    <option value="KAWéNI">KAWéNI</option>
+                    <option value="KOUNGOU">KOUNGOU</option>
+                    <option value="LABATTOIR">LABATTOIR</option>
+                    <option value="LONGONI">LONGONI</option>
+                    <option value="MTSANGAMOUJI">MTSANGAMOUJI</option>
+                    <option value="M'TSANGAMOUJI">M'TSANGAMOUJI</option>
+                    <option value="M'TSAMOUDOU">M'TSAMOUDOU</option>
+                    <option value="MAJICAVO-KOROPA">MAJICAVO-KOROPA</option>
+                    <option value="MAJICAVO-LAMIR">MAJICAVO-LAMIR</option>
+                    <option value="MALAMANI">MALAMANI</option>
+                    <option value="MAMOUDZOU">MAMOUDZOU</option>
+                    <option value="MANJAGOU">MANJAGOU</option>
+                    <option value="MBOUANATSA">MBOUANATSA</option>
+                    <option value="MBOUINI">MBOUINI</option>
+                    <option value="MIRéRéNI">MIRéRéNI</option>
+                    <option value="MLIHA">MLIHA</option>
+                    <option value="MOINATRINDI">MOINATRINDI</option>
+                    <option value="MRAMADOUDOU">MRAMADOUDOU</option>
+                    <option value="MRONABéJA">MRONABéJA</option>
+                    <option value="MROUALé">MROUALé</option>
+                    <option value="MTSAHARA">MTSAHARA</option>
+                    <option value="MTSAMBORO">MTSAMBORO</option>
+                    <option value="MTSAMOUDOU">MTSAMOUDOU</option>
+                    <option value="MTSANGAMBOUA">MTSANGAMBOUA</option>
+                    <option value="MTSAPéRé">MTSAPéRé</option>
+                    <option value="MZOUAZIA">MZOUAZIA</option>
+                    <option value="NYAMBADAO">NYAMBADAO</option>
+                    <option value="ONGOJOU">ONGOJOU</option>
+                    <option value="OUANGANI">OUANGANI</option>
+                    <option value="PAMANDZI">PAMANDZI</option>
+                    <option value="PASSAMAINTY">PASSAMAINTY</option>
+                    <option value="PASSY-KéLI">PASSY-KéLI</option>
+                    <option value="POROANI">POROANI</option>
+                    <option value="SADA">SADA</option>
+                    <option value="SOHOA">SOHOA</option>
+                    <option value="TRéVANI">TRéVANI</option>
+                    <option value="TSARARANO">TSARARANO</option>
+                    <option value="TSIMKOURA">TSIMKOURA</option>
+                    <option value="TSINGONI">TSINGONI</option>
+                    <option value="TSOUNDZOU 1">TSOUNDZOU 1</option>
+                    <option value="TSOUNDZOU 2">TSOUNDZOU 2</option>
+                    <option value="VAHIBé">VAHIBé</option>
+            </select>           
+                <label for="ville"></label>
+            </div>
+
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/phone-icon.png") %>">
+                <input type="tel" name="telephone" placeholder="Entrer votre Téléphone" required>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <input type="text" name="codepostal" placeholder="Entrer votre code postal" required >
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <input type="text" placeholder="Entrer votre identifiant" required >
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/email-icon.png") %>">
+                <input type="email" placeholder="Entrer votre Adresse e-mail" required >
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/unlock-icon.png") %>">
+                <input type="password" placeholder="Entrer votre Mot de Passe" required>
+                <i class="material-icons">visibility_off</i>
+            </div>
+            <div class="d-block">
+                <p>Vos données personnelles seront utilisées pour vous accompagner au 
+                    cours de votre visite du site web, gérer l’accès à votre compte, et pour 
+                    d’autres raisons décrites dans notre <a class="link"> politique de confidentalité <a> .
+                </p>
+            </div>
+            <button type="submit" class="btn">Enregistrer</button>
+        </form>
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png") %>" >
+    </div>
+</div>

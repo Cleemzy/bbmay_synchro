@@ -1,0 +1,151 @@
+<div class="product">
+    <%= if is_nil(@list_panier) or @list_panier == [] do %>
+        <div class="vide">
+            <img src="<%= Routes.static_path(@socket, "/images/shopping.png") %>"> <h3>Votre panier est actuellement vide.</h3>
+        </div>
+        <div class="bouton-retour">
+            <button type="submit" class="retour">
+                <a  href="/produit">Retour à la boutique</a>
+            </button>
+        </div>
+    <% else %>
+        <div id="grid">
+            <div id="item1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ARTICLES</th>
+                            <th></th>
+                            <th></th>
+                            <th>QUANTITES</th>
+                            <th></th>
+                            <th>PRIX</th>
+                            <th>SUPPRIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <%= for produit <- @produits do %>
+                        <tr>
+                            <td>
+                                <%= if produit.photolink == "#{produit.id_produit}-0.JPG" do %>
+                                    <img src="<%= Routes.static_path(@socket, "/images/empty.png") %>" class="shop">
+                                <% else %>
+                                    <img src="data:image/png;base64, <%= produit.photolink %>" class="shop" />
+                                <% end %>
+                            </td>
+                            <td><p><a href="/show_produit/<%= produit.id_produit %>"><%= produit.title %></a></p></td>
+                            <td><button onclick="sub('<%= produit.id_produit %>')" phx-click="sub" phx-value-idp="<%= produit.id_produit %>" class="quantite_moins"></button></td>
+                            <td id="<%= produit.id_produit %>"><%= Enum.fetch!(@list_quantite, Enum.find_index(@list_panier, fn x -> x == produit.id_produit end)) %></td>
+                            <td><button onclick="add('<%= produit.id_produit %>', <%= Decimal.to_integer(produit.stockmax) %>)" phx-click="add" phx-value-idp="<%= produit.id_produit %>" class="quantite_plus"></button></td>
+                            <td>€<%= Float.round(Decimal.to_float(produit.price) * Enum.fetch!(@list_quantite, Enum.find_index(@list_panier, fn x -> x == produit.id_produit end)), 2) %></td>
+                            <td><button class="effacer" phx-click="sup" phx-value-idp="<%= produit.id_produit %>" onclick="remove_panier('<%= produit.id_produit %>')"><i class="fas fa-trash fa-3x"></i> </button></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+
+                </table>
+            </div>
+            <div id="item3">
+                <h3 class="text-center">
+                    Total
+                </h3>
+                <table>
+                    <tbody>
+                        <tr class="total">
+                            <td class="title-left">SOUS-TOTAL</td>
+                            <td>€<%= @somme %></td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">REMISE DE 5%</td>
+                            <td>- €<%= Float.round((@somme * 5)/100, 2) %></td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">EXPEDITION</td>
+                            <td>Calculer les frais d'expédition</td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">TOTAL</td>
+                            <td>€<%= Float.round(@somme - ((@somme * 5)/100), 2) %></td>
+                        </tr>
+                    </tbody>
+                    <caption>
+                        <form method="post" action="/valider-panier">
+                            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+                            <input type="hidden" name="statut" value="<%= @user %>">
+                            <input type="hidden" name="prix_remise" value="<%= Float.round(@somme - ((@somme * 5)/100), 2) %>">
+                            <input type="hidden" name="prix_total" value="<%= @somme %>">
+                            <button type="submit" value="" class="btn">Valider la commande</button>
+                        </form>
+                    </caption>
+                </table>
+            </div>
+        </div>
+    <% end %>
+</div>
+<script>
+  function remove_panier(id) {
+    csrf = document.querySelector("meta[name=csrf]").content
+
+    $.ajax({
+      url: "/delete-panier",
+      type: "post",
+      data: {
+        post: {id: id}
+      },
+      headers: {
+        "X-CSRF-TOKEN": csrf
+      },
+      success: function() {
+        console.log("success")
+      }
+    })
+  }
+
+  function add(id, max) {
+    quantite = parseInt(document.getElementById(""+id+"").innerHTML)
+    csrf = document.querySelector("meta[name=csrf]").content
+
+    if (quantite < max) {
+      quantite += 1
+      document.getElementById(""+id+"").innerHTML = quantite
+
+      $.ajax({
+        url: "/add-panier",
+        type: "post",
+        data: {
+          post: {id: id, quantite: quantite}
+        },
+        headers: {
+          "X-CSRF-TOKEN": csrf
+        },
+        success: function() {
+          console.log("success")
+        }
+      })
+    }
+  }
+
+  function sub(id) {
+    quantite = parseInt(document.getElementById(""+id+"").innerHTML)
+    csrf = document.querySelector("meta[name=csrf]").content
+
+    if (quantite > 1) {
+      quantite -= 1
+      document.getElementById(""+id+"").innerHTML = quantite
+
+      $.ajax({
+        url: "/add-panier",
+        type: "post",
+        data: {
+          post: {id: id, quantite: quantite}
+        },
+        headers: {
+          "X-CSRF-TOKEN": csrf
+        },
+        success: function() {
+          console.log("success")
+        }
+      })
+    }
+  }
+</script>

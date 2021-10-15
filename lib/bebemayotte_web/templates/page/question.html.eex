@@ -1,0 +1,64 @@
+<div class="product">
+  <div class="top">
+        <img src="<%= Routes.static_path(@conn, "/images/top.png") %>" >
+    </div>
+    <div class="box-contact">
+        <h1>QU'EN PENSEZ-VOUS?</h1>
+        <form method="post" action="">
+            <div class="column" id="radio">
+                <div>
+                    <p>Rapidité du site:</p>
+                    <label for="lent" class="inline">
+                        <input type="radio" id="lent" name="rapidite" value="lent">Lent
+                    </label>
+                    <label for="moyen" class="inline">
+                        <input type="radio" id="moyen" name="rapidite" value="moyen" checked>Moyen
+                    </label>
+                    <label for="rapide" class="inline" >
+                        <input type="radio" id="rapide" name="rapidite" value="rapide">Rapide
+                    </label>
+                </div>
+                <div>
+                    <p>Navigation sur le site:</p>
+                    <label for="lent" class="inline">
+                        <input type="radio" id="lent" name="site" value="lent">Lent
+                    </label>
+                    <label for="moyen" class="inline">
+                        <input type="radio" id="moyen" name="site" value="moyen" checked>Moyen
+                    </label>
+                    <label for="rapide" class="inline" >
+                        <input type="radio" id="rapide" name="site" value="rapide">Rapide
+                    </label>
+                </div>
+                <div>
+                     <p>Êtes-vous satisfait site:</p>
+                    <label for="lent" class="inline">
+                        <input type="radio" id="lent" name="sites" value="lent">Lent
+                    </label>
+                    <label for="moyen" class="inline">
+                        <input type="radio" id="moyen" name="sites" value="moyen" checked>Moyen
+                    </label>
+                    <label for="rapide" class="inline" >
+                        <input type="radio" id="rapide" name="sites" value="rapide">Rapide
+                    </label>
+                </div>
+            </div>
+            <div>
+                <input type="email" placeholder="Votre E-mail " required>
+            </div>
+            <fieldset>
+            <h2>Votre Message</h2>
+            <textarea></textarea>
+            </fieldset>
+
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </div>
+    <div>
+        <%# <img style='display:block; width:100px;height:100px;' id='base64image'
+       src="data:image/png;base64," /> %>
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png") %>" >
+    </div>
+</div>

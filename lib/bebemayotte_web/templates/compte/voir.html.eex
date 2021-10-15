@@ -1,0 +1,51 @@
+<div class="product">
+    <div class="voir">   
+        <p>La commande n°27989835 a été passée le 4 mai 2021 et est actuellement Attente paiement.</p>
+        <h2>Détails de la commande</h2> 
+        <table class="tablevoir" >
+            <thead>
+                <tr>
+                    <th class="com">PRODUITS</th>
+                    <th class="com">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="commande">détail de l'article</td>
+                    <td class="commande">prix</td>
+                </tr>
+                <tr>
+                    <th >SOUS TOTAL:</th>
+                    <td class="commande">prix</td>
+                </tr>
+                <tr>
+                    <th >REMISE:</th>
+                    <td class="commande">prix</td>
+                </tr>
+                <tr>
+                    <th>EXPÉDITION:</th>
+                    <th>Récupérer en boutique ( 0€ de frais).
+                        Vous allez être contacté par l'équipe Web pour organiser 
+                        l'enlèvement de votre commande.
+                    </th>
+                </tr>
+                 <tr>
+                    <th>MOYEN DE PAIEMENT :</th>
+                    <th>E-Transactions payment</th>
+                </tr>
+                <tr>
+                    <th>TOTAL :</th>
+                    <th>prix</th>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Adresse de facturation</h2> 
+        <div class="facture">
+            <h4>Nom+ prénom</h4>
+            <h4>Rue du quartier</h4>
+            <h4>Ville </h4>
+            <i class="material-icons">&#xe0cd;</i><h4 id="icon">numero</h4>
+          <i class="material-icons">mail_outline</i><h4 id="icon">e_mail</h4>
+        </div>
+    </div>
+</div>

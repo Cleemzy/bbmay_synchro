@@ -1,0 +1,81 @@
+<div class="product">
+	<div class="compte">
+		<div class="containe">
+			<nav>
+				<ul class="mcd-menu">
+					<li>
+						<a href="/account" class="active">
+							<strong>Tableau de bord</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/commandes" class="active">
+							<strong>Commandes</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/download"class="active">
+							<strong>Téléchargement</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/adresse"class="active">
+							<strong>Adresse</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/detail"class="active" id="active">
+							<strong>Détail du compte</strong>
+						</a>
+					</li>
+					<li>
+						<%= form_for @conn, Routes.compte_path(@conn, :deconnexion), [method: :delete], fn f -> %>
+							<%= hidden_input f, :hidden %>
+							<%= submit "Déconnexion", class: "btn_" %>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<%= form_for @conn, Routes.compte_path(@conn, :update_account), [method: :post], fn f -> %>
+			<div class="contenue-compte">
+				<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info_update) %></p>
+				<div id="detail">
+					<label>Prénom *
+						<%= text_input f, :prenom, value: @user.prenom %>
+					</label>
+					<label>Nom *
+						<%= text_input f, :nom, value: @user.nom %>
+					</label>
+				</div>
+				<div class="details">
+					<label>Nom affiché *
+						<%= if @user.nom_affiche == "null" do %>
+							<%= text_input f, :nom_affiche %>
+						<% else %>
+							<%= text_input f, :nom_affiche, value: @user.nom_affiche %>
+						<% end %>
+					</label>
+					<h5>Indique comment votre nom apparaîtra dans la section relative au compte et dans les avis</h5>
+					<label>Adresse de messagerie *
+						<%= email_input f, :adresseMessage, value: @user.adresseMessage %>
+					</label>
+					<p class="alert alert-danger" role="alert"><%= get_flash(@conn, :mdp_error) %></p>
+					<h5>Changement de mot de passe</h5>
+					<label>Mot de passe actuel (laisser vide pour le conserver)
+						<%= password_input f, :motdepasse_actuel, placeholder: "Entrer votre ancien mot de passe" %>
+					</label>
+					<label>Nouveau mot de passe (laisser vide pour conserver l’actuel)
+						<%= password_input f, :motdepasse_new, placeholder: "Entrer votre nouveau mot de passe" %>
+					</label>
+					<label>Confirmer le nouveau mot de passe
+						<%= password_input f, :motdepasse_new_confirm, placeholder: "Confirmez votre nouveau mot de passe" %>
+					</label>
+				</div>
+				<div id="btn">
+					<%= submit "Enregistrer les modifications", class: "btn" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

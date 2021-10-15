@@ -1,0 +1,57 @@
+<div class="product">
+    <div class="top">
+        <img src="<%= Routes.static_path(@socket, "/images/top.png") %>" >
+    </div>
+    <div class="box-contact">
+        <h1>CONTACT</h1>
+        <form method="post" action="" class="form">
+            <div>
+                <input type="text" placeholder="Entrer votre Nom (obligatoire)" required >
+            </div>
+            <div>
+                <input type="email" placeholder="Votre adresse de messagerie (obligatoire)" required>
+            </div>
+            <fieldset>
+            <h2>Votre Message</h2>
+            <textarea></textarea>
+            </fieldset>
+            <div class="row section">
+
+            </div>
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@socket, "/images/Ellipse 5.png") %>" >
+    </div>
+
+
+</div>
+<%# <div class="product">
+    <div class="top">
+        <img src="<%= Routes.static_path(@conn, "/images/top.png")" >
+    </div>
+    <div class="box-contact">
+        <h1>CONTACT</h1>
+        <%= form_for @conn, Routes.page_path(@conn, :send_message_contact), [method: :post], fn f ->
+            <div>
+                <%= text_input f, :nom, placeholder: "Entrer votre nom (obligatoire)", required: true
+            </div>
+            <div>
+                <%= email_input f, :email, placeholder: "Entrer votre adresse messagerie (obligatoire)", required: true
+            </div>
+            <fieldset>
+            <h2>Votre Message</h2>
+            <%= textarea f, :description, placeholder: "Votre message...", required: true
+            </fieldset>
+            <div class="row section">
+
+            </div>
+            <button type="submit" class="btn">Envoyer</button>
+        <% end
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png")" >
+    </div>
+</div>
+%>

@@ -1,0 +1,102 @@
+<div class="row product">
+  <!-- début aside bar -->
+  <section class="col col-lg-2">
+    <div class="sidebar">
+      <%= for categorie <- @categories do %>
+        <div class="item">
+            <input type="checkbox" id="<%= categorie.id_cat %>"/>
+           <img class="arrow" src="<%= Routes.static_path(@socket, "/images/chevron-right.svg" ) %>"/> <label for="<%= categorie.id_cat %>"><%= categorie.nom_cat %></label>
+          <%= for souscategorie <- @souscategories do %>
+            <%= if souscategorie.id_cat == categorie.id_cat do %>
+              <ul>
+                <li><a href="/produit/<%= categorie.nom_cat %>/<%= souscategorie.nom_souscat %>"><%= souscategorie.nom_souscat %></a></li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <form phx-change="tri">
+        <input type="hidden" name="valeur" id="selectedHidden" value="<%= @tri_select %>" >
+        <input type="hidden" name="cat" value="<%= @cat %>" >
+        <input type="hidden" name="souscat" value="<%= @souscat %>" >
+        <input type="hidden" name="search" value="<%= @search %>" >
+        <select name="select-1" id="select-1">
+          <option value="1" id="selected-1">Tri par defaut</option>
+          <option value="2" id="selected-2">Tri par tarif croissant</option>
+          <option value="3" id="selected-2">Tri par tarif décroissant</option>
+          <option value="4" id="selected-4">Tri du plus récent au plus ancien</option>
+        </select>
+      </form>
+     </div>
+  </section>
+  <!-- fin aside bar -->
+  <!-- début contenue principale -->
+  <section class="col-sm all" >
+    <%= if @cat != nil do %>
+      <h1><%= @cat %>:</h1>
+      <%= if @souscat != nil do %>
+        <h2><%= @souscat %>:</h2>
+      <% end %>
+    <% end %>
+    <center>
+      <a phx-click="previous_page" phx-value-idprev="<%= @first_row_id %>" phx-value-page="<%= @page %>" phx-value-cat="<%= @cat %>" phx-value-souscat="<%= @souscat %>" phx-value-search="<%= @search %>" phx-value-tri="<%= @tri_select %>"><i class="fas fa-angle-double-left"></i></a>
+        <%= @page %>
+      <a phx-click="next_page" phx-value-finpage="<%= @nb_page %>" phx-value-idnext="<%= @last_row_id %>" phx-value-page="<%= @page %>" phx-value-cat="<%= @cat %>" phx-value-souscat="<%= @souscat %>" phx-value-search="<%= @search %>" phx-value-tri="<%= @tri_select %>"><i class="fas fa-angle-double-right"></i></a>
+    </center>
+    <p class="alert alert-info" role="alert"><%= @message %></p>
+    <div class="article">
+        <%= for produit <- @produits do %>
+          <div class="produit">
+            <a class="produit_a" href="/show_produit/<%= produit.id_produit %>">
+              <%= if produit.photolink == "#{produit.id_produit}-0.JPG" do %>
+                  <img src="<%= Routes.static_path(@socket, "/images/empty.png") %>" href="/show_produit/<%= produit.id_produit %>">
+              <% else %>
+                  <img src="data:image/png;base64, <%= produit.photolink %>" href="/show_produit/<%= produit.id_produit %>"/>
+              <% end %>
+              <div>
+                <h3 class="detail"><%= produit.title %></h3>
+              </div>
+
+              <div class="column containt">
+                <%= if produit.stockstatus do %>
+                  <h4 class="prix">€<%= Decimal.round(produit.price,2) %></h4>
+                  <a class="ajout" onclick="add_panier('<%= produit.id_produit %>')">
+                    <i  class='fab panier '>&#xe057;</i>
+                  </a>
+                <% else %>
+                  <h3 class="">RUPTURE DE STOCK</h3>
+                <% end %>
+              </div>
+            </a>
+          </div>
+      <% end %>
+    </div>
+    <center>
+      <a phx-click="previous_page" phx-value-idprev="<%= @first_row_id %>" phx-value-page="<%= @page %>" phx-value-cat="<%= @cat %>" phx-value-souscat="<%= @souscat %>" phx-value-search="<%= @search %>" phx-value-tri="<%= @tri_select %>"><i class="fas fa-angle-double-left"></i></a>
+        <%= @page %>
+      <a phx-click="next_page" phx-value-finpage="<%= @nb_page %>" phx-value-idnext="<%= @last_row_id %>" phx-value-page="<%= @page %>" phx-value-cat="<%= @cat %>" phx-value-souscat="<%= @souscat %>" phx-value-search="<%= @search %>" phx-value-tri="<%= @tri_select %>"><i class="fas fa-angle-double-right"></i></a>
+    </center>
+  </section>
+    <!-- fin contenue principale -->
+    <!--fin contenue  -->
+</div>
+<script>
+function add_panier(id) {
+  quantite = 1
+  csrf = document.querySelector("meta[name=csrf]").content
+
+  $.ajax({
+    url: "/add-panier",
+    type: "post",
+    data: {
+      post: {id: id, quantite: quantite}
+    },
+    headers: {
+      "X-CSRF-TOKEN": csrf
+    },
+    success: function() {
+      console.log("success")
+    }
+  })
+}
+</script>

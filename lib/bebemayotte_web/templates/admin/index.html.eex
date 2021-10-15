@@ -1,0 +1,10 @@
+<section class="phx-hero">
+  <form class="formulaire" action="/admin" method="post" class="form">
+    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+    <label>Identifiant ou adresse e-mail</label>
+    <input type="text" name="identifiant" name="email">
+    <label>Mot de passe</label>
+    <input type="password" name="mdp">
+    <button type="submit">Connexion</button>
+  </form>
+</section>

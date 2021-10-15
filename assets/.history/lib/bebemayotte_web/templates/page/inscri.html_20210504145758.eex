@@ -1,0 +1,65 @@
+<div class="product">
+    <div class="top">
+        <img src="<%= Routes.static_path(@conn, "/images/top.png") %>" >
+    </div>
+    <div class="box-inscri">
+        <h1>INSCRIPTION</h1>
+        <p> Si vous rencontrez des problèmes sur l’enregistrement, <br>
+            veuillez nous contacter immédiatement au 0977 19 62 50 (non surtaxé)</p>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <%= form_for @conn, Routes.page_path(@conn, :submit_inscription), [method: :post, as: :user], fn f -> %>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <%= text_input f, :prenom, placeholder: "Entrer votre prénom" %>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <%= text_input f, :nom, placeholder: "Entrer votre nom" %>
+                
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/flag-icon.png") %>">
+                <%= select f, :pays , ["Séléctionner ici","MAYOTTE"], placeholder: "Entrer votre pays" %>
+                <label for="pays"></label>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/place-icon.png") %>">
+                <%= select f, :ville, ["AJANGOUA", "BAMBO-EST", "BAMBO-OUEST", "BANDRABOUA", "BANDRéLé", "BARAKANI", "BOUYOUNI", "BOUéNI", "CHEMBENYOUBA", "CHICONI", "CHIRONGUI", "CHOUNGUI", "COCONI", "COMBANI", "DAPANI", "DEMBéNI", "DZAOUDZI", "DZOUMOGNE", "HAGNOUNDROU", "HAMJAGO", "HAMOURO", "HANDREMA", "ILONI", "KAHANI", "KANGANI", "KANI-KéLI", "KANIBé", "KAVANI", "KAWéNI", "KOUNGOU", "LABATTOIR", "LONGONI", "MTSANGAMOUJI", "M\'TSANGAMOUJI", "M\'TSAMOUDOU", "MAJICAVO-KOROPA", "MAJICAVO-LAMIR", "MALAMANI", "MAMOUDZOU", "MANJAGOU", "MBOUANATSA", "MBOUINI", "MIRéRéNI", "MLIHA", "MOINATRINDI", "MRAMADOUDOU", "MRONABéJA", "MROUALé", "MTSAHARA", "MTSAMBORO", "MTSAMOUDOU", "MTSANGAMBOUA", "MTSAPéRé", "MZOUAZIA", "NYAMBADAO", "ONGOJOU", "OUANGANI", "PAMANDZI", "PASSAMAINTY", "PASSY-KéLI", "POROANI", "SADA", "SOHOA", "TRéVANI", "TSARARANO", "TSIMKOURA", "TSINGONI", "TSOUNDZOU 1", "TSOUNDZOU 2", "VAHIBé"], placeholder: "Entrer votre ville" %>
+                <label for="ville"></label>
+            </div>
+
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/phone-icon.png") %>">
+                <%= text_input f, :telephone, placeholder: "Entrer votre telephone" %>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <%= text_input f, :codepostal, placeholder: "Entrer votre code postal" %>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/user-icon.png") %>">
+                <%= text_input f, :identifiant, placeholder: "Entrer votre identifiant" %>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/email-icon.png") %>">
+                <%= email_input f, :adresseMessage, placeholder: "Entrer votre adresse e-mail" %>
+            </div>
+            <div class="email">
+                <img src="<%= Routes.static_path(@conn, "/images/unlock-icon.png") %>">
+                <%= password_input f, :motdepasse, placeholder: "Entrer votre mot de passe" %>
+                <i class="material-icons">visibility_off</i>
+            </div>
+            <div class="d-block">
+                <p>Vos données personnelles seront utilisées pour vous accompagner au 
+                    cours de votre visite du site web, gérer l’accès à votre compte, et pour 
+                    d’autres raisons décrites dans notre <a class="link"> politique de confidentalité <a> .
+                </p>
+            </div>
+            <%= submit "ENREGISTRER", class: "btn" %>
+        <% end %>
+    </div>
+    <div class="bottom">
+        <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png") %>" >
+    </div>
+</div>

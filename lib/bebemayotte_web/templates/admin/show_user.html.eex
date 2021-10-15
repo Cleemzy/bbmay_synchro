@@ -1,0 +1,16 @@
+<div class="column contain__admin">
+    <div class="row title__admin">
+        <div class="column"><h3 id="admin_row">Pseudo</h3></h3></div>
+        <div class="column"><h3 id="admin_row">Email</h3></div>
+        <div class="column"><h3 id="admin_row">Mot de passe</h3></div>
+        
+    </div>
+    <%=for user <- @users do %>    
+    <div class="row content__admin">
+        <div class="column"> <%= user.identifiant %> </div>
+        <div class="column"> <%= user.nom %> </div>
+        <div class="column"> <%= user.prenom %> </div>    
+       
+    </div>
+    <% end %>
+</div>

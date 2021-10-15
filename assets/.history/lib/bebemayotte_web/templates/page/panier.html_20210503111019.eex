@@ -1,0 +1,69 @@
+<div class="product">
+    <%= if @paniers do %>
+        <div class="vide">
+            <img src="<%= Routes.static_path(@conn, "/images/shopping.png") %>"> <h3>Votre panier est actuellement vide.</h3>
+        </div>
+        <div class="bouton-retour">
+            <button type="submit" class="retour">
+                Retour à la boutique
+            </button>
+        </div>
+    <% else %>
+        <div id="grid">
+            <div id="item1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ARTICLES</th>
+                            <th></th>
+                            <th>QUANTITES</th>
+                            <th>PRIX</th>
+                            <th>SUPPRIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%= for panier <- @paniers  do %>
+                            <%= for produit <- @produits do %>
+                                <%= if produit.id_produit == panier.id_produit do %>
+                                    <tr>
+                                        <td><img src="<%= Routes.static_path(@conn, "/images/produits/#{produit.photolink}" ) %>" class="shop" /></td>
+                                        <td><p><%= produit.title %></p></td>
+                                        <td><input type="number" id="quantite" name="quantite" min="1" max="10" value="1" > </td>
+                                        <td>€<%= produit.price * panier.quantite%></td>
+                                        <td><button class="effacer"> </button></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+
+                </table>
+            </div>
+            <div id="item3">
+                <h3 class="text-center">
+                    Total
+                </h3>
+                <table>
+                    <tbody>
+                        <tr class="total">
+                            <td class="title-left">SOUS-TOTAL</td>
+                            <td>€<%= @somme %></td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">REMISE DE 5%</td>
+                            <td>- €<%= (@somme * 5)/100 %></td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">EXPEDITION</td>
+                            <td>Calculer les frais d'expédition</td>
+                        </tr>
+                        <tr class="total">
+                            <td class="title-left">TOTAL</td>
+                            <td>€<%= @somme - ((@somme * 5)/100) %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <% end %>
+</div>

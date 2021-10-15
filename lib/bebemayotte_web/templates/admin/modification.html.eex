@@ -1,0 +1,22 @@
+<div class="add">
+<%= @id %>
+    <div class="card_add">
+    <form action="/change/<%= @id %>" method="post">
+    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+    <%=if !@changeset.action do %>
+        <label>Identifiant 
+            <input type="text" name="username" value="<%= @admins.username%>">
+        </label>
+        <label>E-mail 
+            <input type="text" name="email_admin" value="<%= @admins.email_admin%>">
+        </label>
+        <label>Mot de passe
+            <input type="text" name="mdp_admin" value="<%= @admins.mdp_admin%>">
+        </label>
+        <div id="btn">
+            <button class="btn_admin">Enregistrer</button>
+        </div>
+    <% end %>
+    </form>
+    </div>
+</div>

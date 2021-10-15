@@ -1,0 +1,16 @@
+<div class="column contain__admin">
+    <div class="row title__admin">
+        <div class="column"><h3 id="admin_row">id catégories</h3></div>
+        <div class="column"><h3 id="admin_row">id sous catégories</h3></div>
+        <div class="column"><h3 id="admin_row">Nom catégories</h3></div>
+        
+    </div>
+    <%=for souscategorie <- @souscategories do %>    
+    <div class="row content__admin">
+        <div class="column" id="title"> <%= souscategorie.id_cat %> </div> 
+        <div class="column" id="title"> <%= souscategorie.id_souscat %> </div> 
+        <div class="column" id="title"> <%= souscategorie.nom_souscat %> </div>    
+       
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,15 @@
+<div class="product">
+    <div class="motdepasse">
+        <h1 id="title">Mon Compte</h1>
+        <p>Mot de passe perdu ? Veuillez saisir votre identifiant ou votre adresse e-mail.<br> 
+        Vous recevrez un lien par e-mail pour créer un nouveau mot de passe.</p>
+        <div class="detail">
+            <label>Identifiant ou e-mail
+                <input type="text">
+            </label>
+        </div>
+        <div id="btn">
+        <button class="btn">Réinitialisation du mot de passe</button>
+    </div>
+    </div>
+</div>

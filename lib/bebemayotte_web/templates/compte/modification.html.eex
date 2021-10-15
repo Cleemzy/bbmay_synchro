@@ -1,0 +1,87 @@
+<div class="product">
+	<div class="compte">
+		<div class="containe">
+			<nav>
+				<ul class="mcd-menu">
+					<li>
+						<a href="/account" class="active">
+							<strong>Tableau de bord</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/commandes" class="active">
+							<strong>Commandes</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/download"class="active">
+							<strong>Téléchargement</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/adresse"class="active" id="active">
+							<strong>Adresse</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/detail"class="active">
+							<strong>Détail du compte</strong>
+						</a>
+					</li>
+					<li>
+						<%= form_for @conn, Routes.compte_path(@conn, :deconnexion), [method: :delete], fn f -> %>
+                            <%= hidden_input f, :hidden %>
+							<%= submit "Déconnexion", class: "btn_" %>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="contenue-compte">
+            <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info_update) %></p>
+            <%= form_for @conn, Routes.compte_path(@conn, :submit_update_livraison), [method: :post], fn f ->  %>
+                <div id="detail">
+                    <label>Prénom *
+                        <%= text_input f, :prenom, value: @user.prenom %>
+                    </label>
+                    <label>Nom *
+                        <%= text_input f, :nom, value: @user.nom %>
+                    </label>
+                </div>
+                <div class="details">
+                    <label>Nom de l'entreprise *
+                        <%= if @user.nom_entreprise == "null" do %>
+                            <%= text_input f, :nom_entreprise %>
+                        <% else %>
+                            <%= text_input f, :nom_entreprise, value: @user.nom_entreprise %>
+                        <% end %>
+                    </label>
+                    <label>Pays/région * </label>
+                    <label><strong><%= @user.pays %><strong></label>
+                    <label>Numéro et nom de rue *
+                        <%= if @user.nom_rue == "null" do %>
+                            <%= text_input f, :nom_rue %>
+                        <% else %>
+                            <%= text_input f, :nom_rue, value: @user.nom_rue %>
+                        <% end %>
+                        <%= if @user.nom_rue == "null" do %>
+                            <%= text_input f, :batiment, placeholder: "Bâtiment, appartement, lot,etc. (facultatif)" %>
+                        <% else %>
+                            <%= text_input f, :batiment, value: @user.batiment %>
+                        <% end %>
+                    </label>
+                    <label>Ville
+                        <p><strong><%= @user.ville %><strong><p>
+                        <%= select f, :ville, ["AJANGOUA", "BAMBO-EST", "BAMBO-OUEST", "BANDRABOUA", "BANDRéLé", "BARAKANI", "BOUYOUNI", "BOUéNI", "CHEMBENYOUBA", "CHICONI", "CHIRONGUI", "CHOUNGUI", "COCONI", "COMBANI", "DAPANI", "DEMBéNI", "DZAOUDZI", "DZOUMOGNE", "HAGNOUNDROU", "HAMJAGO", "HAMOURO", "HANDREMA", "ILONI", "KAHANI", "KANGANI", "KANI-KéLI", "KANIBé", "KAVANI", "KAWéNI", "KOUNGOU", "LABATTOIR", "LONGONI", "MTSANGAMOUJI", "M\'TSANGAMOUJI", "M\'TSAMOUDOU", "MAJICAVO-KOROPA", "MAJICAVO-LAMIR", "MALAMANI", "MAMOUDZOU", "MANJAGOU", "MBOUANATSA", "MBOUINI", "MIRéRéNI", "MLIHA", "MOINATRINDI", "MRAMADOUDOU", "MRONABéJA", "MROUALé", "MTSAHARA", "MTSAMBORO", "MTSAMOUDOU", "MTSANGAMBOUA", "MTSAPéRé", "MZOUAZIA", "NYAMBADAO", "ONGOJOU", "OUANGANI", "PAMANDZI", "PASSAMAINTY", "PASSY-KéLI", "POROANI", "SADA", "SOHOA", "TRéVANI", "TSARARANO", "TSIMKOURA", "TSINGONI", "TSOUNDZOU 1", "TSOUNDZOU 2", "VAHIBé"], placeholder: "Entrer votre ville" %>
+                    </label>
+                    <label>Code postal *
+                        <%= text_input f, :codepostal, value: @user.codepostal %>
+                    </label>
+
+                </div>
+                <div id="btn">
+                    <button type="submit" class="btn">Sauvegarder l'adresse</button>
+                </div>
+            <% end %>
+        </div>
+</div>

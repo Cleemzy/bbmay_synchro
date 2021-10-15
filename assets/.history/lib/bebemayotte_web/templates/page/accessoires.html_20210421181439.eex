@@ -1,0 +1,151 @@
+<div class="row">
+  <!-- début aside bar -->
+  <section class="col col-lg-2">
+    <div class="sidebar">
+      <div class="item">
+        <input type="checkbox" id="A"/>
+      <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/> <label for="A">NOUVEAUTE</label>
+
+      <ul>
+        <li><a hred="#">  111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="B"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="B">ACCESSOIRES</label>
+
+      <ul>
+        <li><a hred="#"> Allaitement </a> </li>
+        <li><a hred="#"> Autres </a> </li>
+        <li><a hred="#"> Dentition- Eveils- Sonore </a> </li>
+        <li><a hred="#"> Promenade </a> </li>
+        <li><a hred="#"> Toilettes </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="C"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="C">BAIN</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="D"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="D">GIFT PACK</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="E"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="E">JEU</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="F"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="F">MARCHE BEBE</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="G"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="G">PROMENADE</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="H"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="H">REPAS</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="I"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="I">SOMMEIL</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="J"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="J">SORTIE</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="K"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="K">TEXTILE</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="L"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="L">TRANSAT</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="M"/>
+       <img class="arrow" src="<%= Routes.static_path(@conn, "/images/chevron-right.svg" ) %>"/><label for="M">DIVERS</label>
+
+      <ul>
+        <li><a hred="#"> 111 </a> </li>
+        <li><a hred="#"> Arrivage </a> </li>
+      </ul>
+      </div>
+    </div>
+  </section>
+  <!-- fin aside bar -->
+  <!-- début contenue principale -->
+  <section class="col-sm all" >
+    <div class="article">
+      <div class="produit" >
+        <img src="<%= Routes.static_path(@conn, "/images/jouet.png") %>" >
+        <h3 class="detail">ACTIVITES MOBILE +3MOIS </h3><br>
+        <div class="column containt">
+            <h4 class="prix">€46,00</h4>
+            <a href="#" class="ajout">
+                <img src="<%= Routes.static_path(@conn, "/images/panier.png") %>" >
+            </a>
+        </div>
+      </div>
+      <div class="produit" >
+
+      </div>
+      <div class="produit" >
+
+      </div>
+    </div>
+    </section>
+    <!-- fin contenue principale -->
+    <!--fin contenue  -->
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bbmay -Mayotte</title>
+    <link rel="icon" href="<%= Routes.static_path(@conn, "/images/b.png") %>"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body>
+    <header>
+      <section class="head">
+        <img src="<%= Routes.static_path(@conn, "/images/fond.png") %>" >
+        <div class="nav">
+          <div class="logo"><img src="<%= Routes.static_path(@conn, "/images/bbmay.png") %>" ></div>
+          <div class="menu">
+            <ul class="menu-bar">
+              <li class="menu-item"><a href="/">Accueil</a></li>
+              <li class="menu-item">
+                <a>Boutique</a>
+                  <ul>
+                    <%= for categorie <- @categories do %>
+                      <li><a><%= categorie %></a></li>
+                    <% end %>
+                  </ul>
+              </li>
+              <li class="menu-item"><a href="/connexion">Se connecter</a></li>
+              <li class="menu-item"><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="search">
+            <input type="search" placeholder="Recherche des produits...">
+            <button type="submit" class="loup"><img src="<%= Routes.static_path(@conn, "/images/loupe.png") %>" ></button>
+            <a href="#"class="panier"><img src="<%= Routes.static_path(@conn, "/images/panier.png") %>" ></a> 
+            <a href="#"class="question"><img src="<%= Routes.static_path(@conn, "/images/question.png") %>" ></a> 
+          </div>
+           
+        </div>
+        <div class="header">
+          <div class="image">
+            <img src="<%= Routes.static_path(@conn, "/images/shop.png") %>" >
+          </div>
+          <div class="text">
+           <h1>BIENVENUE !</h1>
+           <p>
+              Etes-vous une maman ou bien une future <br>
+              maman?Notre site de vente en ligne est <br>
+              exactement conçu pour vous. Visitez notre <br>
+              site pour trouver ce qui vous convient pour <br>
+              vous ainsi que pour votre bébé. 
+            </p>
+          </div>
+        </div>
+        
+      </section>
+    </header>
+    <main role="main" class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= @inner_content %>
+    </main>
+    <footer>
+      <div class="footer">
+        <div class="card-footer">
+          <div class="logo-footer"><img src="<%= Routes.static_path(@conn, "/images/bbmay.png") %>" ></div>
+          <div class="text-footer"><p>La boutique en ligne spécialement pour les tout-petits . </p></div>
+        </div>
+        <div class="card-footer">
+          <div class="image-footer"><img src="<%= Routes.static_path(@conn, "/images/placeholder.png") %>" ></div>
+          <div class="text-footer"><p> <a>Rd Point Kaweni-Kaweni-97600 MAMOUDZOU-MAYOTTE-FRANCE</a> </p></div>
+        </div>
+        <div class="card-footer">
+          <div class="image-footer"><img src="<%= Routes.static_path(@conn, "/images/phone.png") %>" ></div>
+          <div class="text-footer"><p>Contactez nous au <a>0269 61 39 10 </a>ou par email sur <a>focicom@gmail.com</a> </p></div>
+        </div>
+        <div class="card-footer">
+          <div class="image-footer"><img src="<%= Routes.static_path(@conn, "/images/facebook-logo.png") %>" ></div>
+          <div class="text-footer"><p>Visitez notre page facebook <a>BB MAY Mayotte</a> ou tapez seulement @bbmaymayotte  </p></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p><a>bbmay.fr</a> | Designed by: <a> MGBI </a> | © 2021</p>
+      </div>
+    </footer>
+  </body>
+</html>

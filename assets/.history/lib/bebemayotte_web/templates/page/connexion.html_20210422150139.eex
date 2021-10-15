@@ -1,0 +1,31 @@
+<div class="top">
+    <img src="<%= Routes.static_path(@conn, "/images/top.png") %>" >
+</div>
+<div class="box-connexion">
+    <h1>CONNEXION</h1>
+    <p> Vous n’avez pas de compte? <a href="/inscription" class="link">Incsrivez- vous</a></p>
+    <form method="post" action="">
+        <div class="email">
+            <img src="<%= Routes.static_path(@conn, "/images/email-icon.png") %>">
+            <input type="text" placeholder="Entrer votre Adresse e-mail ou votre identifiant" required>
+        </div>
+        <div class="mdp">
+            <img src="<%= Routes.static_path(@conn, "/images/unlock-icon.png") %>">
+            <input type="password" placeholder="Entrer votre Mot de passe" required>
+            <i class="material-icons">visibility_off</i>
+        </div>
+        <div class="row block">
+            <div class="column lien">
+                <a class="link">Mot de passe oublier?</a> 
+            </div>   
+            <div class="column check">
+                <input type="checkbox" name="remember">
+                <label for="remember" class="remember">Se souvenir de moi</label>
+            </div>
+        </div>
+        <button type="submit" class="btn">Connexion</button>
+    </form>
+</div>
+<div class="bottom">
+    <img src="<%= Routes.static_path(@conn, "/images/Ellipse 5.png") %>" >
+</div>

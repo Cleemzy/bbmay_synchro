@@ -1,0 +1,91 @@
+ <section class="head">
+  <img src="<%= Routes.static_path(@conn, "/images/fond.png") %>" >
+  
+    <div class="header">
+      <div class="image">
+        <img src="<%= Routes.static_path(@conn, "/images/shop.png") %>" >
+      </div>
+      <div class="text">
+        <h1>BIENVENUE !</h1>
+        <p>
+          Etes-vous une maman ou bien une future <br>
+          maman?Notre site de vente en ligne est <br>
+          exactement conçu pour vous. Visitez notre <br>
+          site pour trouver ce qui vous convient pour <br>
+          vous ainsi que pour votre bébé. 
+        </p>
+      </div>
+    </div>
+        
+</section>
+<section class="row ph">
+  <article class="column">
+  <div>
+    <h1 class="titre">Bbmay,la boutique en ligne spécialement pour les tout-petits </h1>
+    <h2 class="art">Nos produits?</h2>
+    <p>Chez nous, nous avons sélectionné des articles pour les bébés qui vous 
+      permettront de suivre l’évolution de votre enfant au quotidien. Promenade, sommeil, repas, 
+      toilette ou encore des jouets d'éveil : vous trouverez tout ce dont vous pouvez avoir besoin sur Bbmay.
+    </p>
+    <h2 class="art">Pourquoi Bbmay?</h2>
+    <p>Parce que notre objectif est de vous satisfaire et que nous sommes fidèles à nos clients.<br>
+    Et parce que votre enfant est notre priorité.</p>
+    <h2 class="art">Les avantages?</h2>
+    <p>Pour ne pas perdre votre temps à vous déplacer ou pour que vous n'auriez 
+    plus besoin d'attendre longtemps au milieu d’une longues queues lorsque 
+    vous vouliez acheter un de nos produit car notre site vous permet d’acheter de 
+    chez vous tous les produits disponibles de la boutique .</p>
+  </div>
+    
+  </article>
+  <article class="column">
+    <div class="containeur"> 
+      <img src="<%= Routes.static_path(@conn, "/images/bb.png") %>" >
+    </div>
+    
+  </article>
+</section>
+<section class="content">
+  <div class="a1">
+    <div class=box>
+      <img src="<%= Routes.static_path(@conn, "/images/article1.png") %>" >
+      <div class="box-content">
+        <a href="/produit/ACCESSOIRES" class="title">Voir plus</a>
+      </div>
+    </div>
+    <div class="box">
+      <img src="<%= Routes.static_path(@conn, "/images/article2.png") %>" >
+      <div class="box-content">
+        <a href="/produit/SORTIE" class="title">Voir plus</a>
+      </div>
+    </div>
+  </div>
+  <div class="a1">
+    <div class="box">
+      <img src="<%= Routes.static_path(@conn, "/images/article3.png") %>" >
+      <div class="box-content">
+        <a href="/produit/PROMENADE" class="title">Voir plus</a>   
+      </div>
+    </div>
+    <div class="box">
+      <img src="<%= Routes.static_path(@conn, "/images/article4.png") %>" >
+      <div class="box-content">
+        <a href="/produit/TEXTILE" class="title">Voir plus</a>
+      </div>
+    </div>
+  </div>
+  <div class="a1">
+    <div class="box">
+      <img src="<%= Routes.static_path(@conn, "/images/article5.png") %>" >
+      <div class="box-content">
+        <a href="/produit/SOMMEIL" class="title">Voir plus</a> 
+      </div>
+    </div> 
+    <div class="box">
+      <img src="<%= Routes.static_path(@conn, "/images/article6.png") %>" >
+      <div class="box-content">
+        <a href="/produit/JEU" class="title">Voir plus</a>     
+      </div>
+    </div>
+  </div>
+</section>

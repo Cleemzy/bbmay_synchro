@@ -1,0 +1,82 @@
+<div class="product">
+	<div class="compte">
+		<div class="containe">
+			<nav>
+				<ul class="mcd-menu">
+					<li>
+						<a href="/account" class="active">
+							<strong>Tableau de bord</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/commandes" class="active">
+							<strong>Commandes</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/download"class="active">
+							<strong>Téléchargement</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/adresse"class="active" id="active">
+							<strong>Adresse</strong>
+						</a>
+					</li>
+					<li>
+						<a href="/detail"class="active">
+							<strong>Détail du compte</strong>
+						</a>
+					</li>
+					<li>
+						<%= form_for @conn, Routes.compte_path(@conn, :deconnexion), [method: :delete], fn f -> %>
+                            <%= hidden_input f, :hidden %>
+							<%= submit "Déconnexion", class: "btn_" %>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="contenue-compte">
+			<div class="contenue-compte">
+                <h3>Les adresses suivantes seront utilisées par défaut sur la page de commande.</h3>
+                <div class="center">
+                    <div>
+                        <h2>Adresse de facturation</h2>
+                        <div class="row">
+                            <div class="column">
+                                <p><%= @user.nom %> <%= @user.prenom %><br>
+								<%= if @user.nom_rue != "null" do %>
+									Rue <%= @user.nom_rue %>
+								<% end %>
+								 <br>
+                                <%= @user.ville %> <br>
+                                <%= @user.codepostal %> <br></p>
+                            </div>
+                            <div class="column">
+                                <a href="/update_address/facturation" class="link">Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Adresse de livraison</h2>
+                        <div class="row">
+                            <div class="column">
+                                <p><%= @user.nom %> <%= @user.prenom %><br>
+								<%= if @user.nom_rue != "null" do %>
+									Rue <%= @user.nom_rue %>
+								<% end %>
+								 <br>
+                                <%= @user.ville %> <br>
+                                <%= @user.codepostal %> <br></p>
+                            </div>
+                            <div class="column">
+                                <a href="/update_address/livraison" class="link">Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    </div>
+	</div>
+</div>

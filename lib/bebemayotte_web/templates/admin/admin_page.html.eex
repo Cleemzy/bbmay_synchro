@@ -1,0 +1,151 @@
+
+
+
+    <div class="main__container">
+          <!-- MAIN TITLE STARTS HERE -->
+
+        <div class="main__title">
+            <img src="<%= Routes.static_path(@conn, "/images/admin.png") %>" >
+            <div class="main__greeting">
+                <h1>Panneau Admin</h1>
+                <p>Bienvenue dans le Dashboard Admin</p>
+            </div>
+        </div>
+
+        <!-- MAIN TITLE ENDS HERE -->
+
+        <!-- MAIN CARDS STARTS HERE -->
+        <div class="main__card">
+            <div class="card_admin">
+                <a>
+                  <i class="fas fa-signal fa-3x text-lightblue" aria-hidden="true"></i>
+                  <div class="card_inner">
+                      <span class="font-bold text-title">€ 0,00</span>
+                      <p class="text-primary-p">de vente net ce mois</p>
+                  </div>
+                </a>
+            </div>
+        </div>
+        <div class="main__cards">
+            <div class="card_admin">
+                <a href="#">
+
+                    <i class="fal fa-ellipsis-h fa-5x text-green" aria-hidden="true"></i>
+                    <div class="card_inner">
+                        <span class="font-bold text-title">Commandes</span>
+                        <p class="text-primary-p">en cours de traitement</p>
+                    </div>
+                </a>
+
+        </div>
+
+            <div class="card_admin">
+                <a href="#">
+                    <i class="fa fa-minus-circle fa-3x text-red" aria-hidden="true"></i>
+                    <div class="card_inner">
+                        <span class="font-bold text-title">Commandes</span>
+                        <p class="text-primary-p">en attente</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        <div class="main__cards">
+            <div class="card_admin">
+                <a href="#">
+                    <i class="fas fa-exclamation-circle fa-3x text-yellow" aria-hidden="true"></i>
+                    <div class="card_inner">
+                        <span class="font-bold text-title"><%=@stockfaible%> produits</span>
+                        <p class="text-primary-p">en stock faible</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card_admin">
+                <a href="#">
+                    <i class="fa fa-times-circle fa-3x text-red" aria-hidden="true"></i>
+                    <div class="card_inner">
+                        <span class="font-bold text-title"><%=@produits%> produits</span>
+                        <p class="text-primary-p">en rupture de stock</p>
+                    
+                        
+                    </div>    
+                </a>
+            </div>
+            <div class="main__card">
+                <div class="card_admin">
+                    <a>
+                    <i class="fas fa-chart-line fa-3x text-lightblue" aria-hidden="true"></i>
+                    
+                    <div class="card_inner">
+                        <span class="font-bold text-title"><%=@stockdispo%> produits</span>
+                        <p class="text-primary-p">disponible en stock</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="card_admin">
+                <a>
+                <i class="fas fa-boxes fa-3x text-green" aria-hidden="true"></i>
+                
+                <div class="card_inner">
+                    <span class="font-bold text-title"><%=@stock%> produits</span>
+                    <p class="text-primary-p">existant</p>
+                </div>
+                </a>
+            </div>
+        </div>
+         
+        <!-- MAIN CARDS ENDS HERE -->
+
+        <!-- CHARTS STARTS HERE -->
+        <div class="charts">
+            <div class="charts__left">
+                <div class="charts__left__title">
+                    <div>
+                        <h1>Statistique de visite</h1>
+                        <p>Nombre de visite par jour</p>
+                    </div>
+
+                </div>
+                <div id="apex1">
+
+                </div>
+            </div>
+
+            <div class="charts__right">
+                <div class="charts__right__title">
+                    <div>
+                        <h1>Statistique des produits</h1>
+                        <p>Nombre de produits vendus, en stocks, restants</p>
+                    </div>
+                    
+                </div>
+
+                <div class="charts__right__cards">
+                    <div class="card1">
+                        <h1>Produits total</h1>
+                        <p>$75,300</p>
+                    </div>
+
+                    <div class="card2">
+                        <h1>Produits vendu</h1>
+                        <p>$124,200</p>
+                    </div>
+
+                    <div class="card3">
+                        <h1>Produits en stocks</h1>
+                        <p>3900</p>
+                    </div>
+
+                    <div class="card4">
+                        <h1>Produits en vente</h1>
+                        <p>1881</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- CHARTS ENDS HERE -->
+
+
+    </div>
