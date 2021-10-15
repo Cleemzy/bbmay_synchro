@@ -16,9 +16,11 @@ defmodule Bebemayotte.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Bebemayotte.PubSub},
       # Start the Endpoint (http/https)
-      BebemayotteWeb.Endpoint
+      BebemayotteWeb.Endpoint,
       # Start a worker by calling: Bebemayotte.Worker.start_link(arg)
       # {Bebemayotte.Worker, arg}
+      Bebemayotte.TestSupervisor,
+      Bebemayotte.TestSelector
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

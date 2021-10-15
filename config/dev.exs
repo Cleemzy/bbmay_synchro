@@ -19,7 +19,11 @@ config :bebemayotte, Bebemayotte.EBPRepo,
   hostname: "37.59.57.29", #NS3072398
   instance: "EBP_2017",
   odbc_driver: "{SQL Server Native Client 11.0}",
-  pool_size: 10
+  pool_size: 50,
+  timeout: 60_000,
+  ownership_timeout: 60_000,
+  queue_target: 30_000,
+  queue_interval: 60_000
 
 # Configure mail
 config :bebemayotte, Bebemayotte.Mailer,
