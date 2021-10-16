@@ -1,4 +1,4 @@
-defmodule Bebemayotte.TestSupervisor do
+defmodule Bebemayotte.ItemSupervisor do
   use DynamicSupervisor
 
   def start_link(init_arg) do

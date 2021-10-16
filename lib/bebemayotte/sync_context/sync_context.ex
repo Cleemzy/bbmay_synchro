@@ -1,4 +1,4 @@
-defmodule Bebemayotte.SyncTestContext do
+defmodule Bebemayotte.SyncContext do
   import Ecto.Query, warn: false
   alias Bebemayotte.Repo
   alias Bebemayotte.EBPRepo
@@ -13,7 +13,7 @@ defmodule Bebemayotte.SyncTestContext do
     EBPRepo.all(query)
   end
 
-  def select_test_ids do
+  def select_item_ids do
     query = from t in "Item",
     select: t.id
     EBPRepo.all(query)
