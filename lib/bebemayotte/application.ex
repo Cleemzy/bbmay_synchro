@@ -19,8 +19,10 @@ defmodule Bebemayotte.Application do
       BebemayotteWeb.Endpoint,
       # Start a worker by calling: Bebemayotte.Worker.start_link(arg)
       # {Bebemayotte.Worker, arg}
-      Bebemayotte.ItemSupervisor,
-      Bebemayotte.ItemSelector
+      # Bebemayotte.ItemSupervisor,
+      # Bebemayotte.ItemSelector;
+      Bebemayotte.TestSupervisor,
+      Bebemayotte.TestSelector
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
