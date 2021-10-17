@@ -4,6 +4,7 @@ defmodule Bebemayotte.TestTable do
 
   schema "test_table" do
       # field :id, :string
+      field :id_test, :string
       field :number, :decimal
       field :image, :string
       field :image_version, :integer
@@ -18,6 +19,7 @@ defmodule Bebemayotte.TestTable do
 
   def changeset(test_table, attrs) do
     test_table
-      |> cast(attrs, [:id, :number, :image, :caption, :family_id, :sub_family_id, :cost_price, :stock_max, :stock_status, :id_user])
+      |> cast(attrs, [:id_test, :image, :caption, :family_id, :sub_family_id, :cost_price, :stock_max, :stock_status, :id_user])
   end
+
 end

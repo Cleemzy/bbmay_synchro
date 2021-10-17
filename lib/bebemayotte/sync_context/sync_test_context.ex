@@ -1,9 +1,9 @@
 defmodule Bebemayotte.SyncTestContext do
   import Ecto.Query, warn: false
 
-
   alias Bebemayotte.Repo
   alias Bebemayotte.EBPRepo
+  alias Bebemayotte.TestTable
 
   def select_test_ids do
     query = from t in "SynchroTest",
@@ -13,7 +13,7 @@ defmodule Bebemayotte.SyncTestContext do
 
   def select_pgtest_ids do
     query = from t in "test_table",
-      select: t.id
+      select: t.id_test
       Repo.all(query)
   end
 
@@ -35,7 +35,7 @@ defmodule Bebemayotte.SyncTestContext do
     query = from t in "SynchroTest",
       where: t.id == ^line_id,
       select: %{
-        id: t.id,
+        id_test: t.id,
         caption: t.caption,
         image: t.itemimage,
         image_version: t.imageversion,
@@ -67,6 +67,17 @@ defmodule Bebemayotte.SyncTestContext do
 
   def encode(binary_image, id) do
     if binary_image != nil, do: Base.encode64(binary_image), else: "#{id}-0.JPG"
+  end
+
+  def insert_test(params \\ %{}) do
+    %TestTable{}
+      |> TestTable.changeset(params)
+      |> Repo.insert
+  end
+
+  def test_changeset(params \\ %{}) do
+    %TestTable{}
+      |> TestTable.changeset(params)
   end
 
   # def is_id_in_table?(id, table) do

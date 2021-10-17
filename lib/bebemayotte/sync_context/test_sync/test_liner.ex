@@ -26,8 +26,11 @@ defmodule Bebemayotte.TestLiner do
       state[:id] not in pgtest_ids ->
         state[:id]
         |> SyncTestContext.all_fields
-        |> IO.inspect
+        |> SyncTestContext.insert_test
+        # |> SyncTestContext.test_changeset
+        # |> IO.inspect
       true ->
+        IO.puts "doing nothing"
         Process.exit(self(), :kill)
     end
 
