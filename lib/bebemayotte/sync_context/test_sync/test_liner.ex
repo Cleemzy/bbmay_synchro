@@ -30,7 +30,7 @@ defmodule Bebemayotte.TestLiner do
         # |> SyncTestContext.test_changeset
         # |> IO.inspect
       true ->
-        IO.puts "doing nothing"
+        IO.inspect(SyncTestContext.checking_changes(state[:id]))
         Process.exit(self(), :kill)
     end
 

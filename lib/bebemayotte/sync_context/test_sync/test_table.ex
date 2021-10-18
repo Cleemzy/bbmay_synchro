@@ -19,7 +19,7 @@ defmodule Bebemayotte.TestTable do
 
   def changeset(test_table, attrs) do
     test_table
-      |> cast(attrs, [:id_test, :image, :caption, :family_id, :sub_family_id, :cost_price, :stock_max, :stock_status, :id_user])
+      |> cast(attrs, [:id_test, :image, :image_version,:caption, :family_id, :sub_family_id, :cost_price, :stock_max, :stock_status, :id_user])
   end
 
 end
