@@ -30,7 +30,18 @@ defmodule Bebemayotte.TestLiner do
         # |> SyncTestContext.test_changeset
         # |> IO.inspect
       true ->
-        IO.inspect(SyncTestContext.checking_changes(state[:id]))
+        changes = SyncTestContext.checking_changes(state[:id])
+        IO.inspect(changes)
+
+        cond do
+          changes == %{} ->
+            # IO.puts "tsisy atao"
+            Process.exit(self(), :kill)
+
+            true ->
+              # IO.puts "updating"
+              SyncTestContext.update_test(changes, state[:id])
+        end
         Process.exit(self(), :kill)
     end
 

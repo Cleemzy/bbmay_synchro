@@ -4,7 +4,7 @@ defmodule Bebemayotte.SyncTestContext do
   alias Bebemayotte.Repo
   alias Bebemayotte.EBPRepo
   alias Bebemayotte.TestTable
-
+  import Ecto.Changeset
 
   def select_test_ids do
     query = from t in "SynchroTest",
@@ -74,6 +74,17 @@ defmodule Bebemayotte.SyncTestContext do
     %TestTable{}
       |> TestTable.changeset(params)
       |> Repo.insert
+  end
+
+  def update_test_changeset(%TestTable{} = test_table, params) do
+    test_table
+      |> TestTable.changeset(params)
+      |> Repo.update
+  end
+
+  def update_test(attrs, line_id) do
+    test_table = Repo.one(from t in TestTable, where: t.id_test == ^line_id)
+    update_test_changeset(test_table, attrs)
   end
 
   def test_changeset(params \\ %{}) do
