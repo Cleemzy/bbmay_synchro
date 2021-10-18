@@ -22,7 +22,9 @@ defmodule Bebemayotte.Application do
       # Bebemayotte.ItemSupervisor,
       # Bebemayotte.ItemSelector;
       Bebemayotte.TestSupervisor,
-      Bebemayotte.TestSelector
+      Bebemayotte.TestSelector,
+      Bebemayotte.PgtestSupervisor,
+      Bebemayotte.PgtestDeleter
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

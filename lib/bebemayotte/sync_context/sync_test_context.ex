@@ -87,6 +87,11 @@ defmodule Bebemayotte.SyncTestContext do
     update_test_changeset(test_table, attrs)
   end
 
+  def delete_pgtest(line_id) do
+    pgtest_table = Repo.one(from t in TestTable, where: t.id_test == ^line_id)
+    Repo.delete(pgtest_table)
+  end
+
   def test_changeset(params \\ %{}) do
     %TestTable{}
       |> TestTable.changeset(params)
