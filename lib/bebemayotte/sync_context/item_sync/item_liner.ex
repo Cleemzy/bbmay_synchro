@@ -8,20 +8,35 @@ defmodule Bebemayotte.ItemLiner do
 
   def init(state) do
 
-    IO.inspect state[:id]
-    # IO.inspect(SyncTestContext.select_line(state[:id]))
-    # Process.exit(self(), :kill)
-
     {:ok, state}
   end
 
-  def handle_cast(:check, state) do
+  def handle_cast(:check_item, state) do
 
-    # IO.inspect(state[:id])
-    # IO.puts("testtt")
+    #LISTING PG TABLE PRODUITS IDS
+    pgitem_ids = SyncContext.select_produits_ids
 
-    # IO.inspect(SyncTestContext.select_line(state[:id]))
-    IO.inspect(SyncContext.select_line(state[:id]))
+    cond do
+      state[:id] not in pgitem_ids ->
+        state[:id]
+        |> SyncContext.all_fields
+        |> SyncContext.insert_produit
+
+      true ->
+        changes = SyncContext.checking_changes(state[:id])
+
+        cond do
+          changes == %{} ->
+            Process.exit(self(), :kill)
+
+            true ->
+              # "updating"
+              SyncContext.update_produit(changes, state[:id])
+        end
+        Process.exit(self(), :kill)
+    end
+
+    Process.exit(self(), :kill)
     {:noreply, state}
   end
 end

@@ -20,7 +20,7 @@ config :bebemayotte, Bebemayotte.EBPRepo,
   instance: "EBP_2017",
   odbc_driver: "{SQL Server Native Client 11.0}",
   pool_size: 50,
-  timeout: 60_000,
+  timeout: 480_000,
   ownership_timeout: 60_000,
   queue_target: 30_000,
   queue_interval: 60_000

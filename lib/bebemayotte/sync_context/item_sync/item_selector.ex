@@ -9,7 +9,6 @@ defmodule Bebemayotte.ItemSelector do
   def init(state) do
 
     spawn_liners()
-
     check_from_each_item()
 
     {:ok, state}
@@ -23,7 +22,7 @@ defmodule Bebemayotte.ItemSelector do
 
   defp check_from_each_item do
     Enum.each(list_item_pids(), fn pid ->
-      GenServer.cast(pid, :check)
+      GenServer.cast(pid, :check_item)
     end)
   end
 
