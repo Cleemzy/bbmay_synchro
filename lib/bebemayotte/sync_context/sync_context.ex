@@ -338,10 +338,9 @@ defmodule Bebemayotte.SyncContext do
   end
 
 
-  def list_existing_items_without_images do
-    existing_items_ids = list_existing_items_ids()
+  def list_existing_items_without_images(existing_items_ids) do
 
-    existing_items = cond do
+    cond do
       length(existing_items_ids) < 2099 ->
 
       query = from i in "Item",
@@ -400,10 +399,9 @@ defmodule Bebemayotte.SyncContext do
 
   end
 
-  def list_existing_produits_without_images do
-    existing_items_ids = list_existing_items_ids()
+  def list_existing_produits_without_images(existing_items_ids) do
 
-    existing_produits = cond do
+    cond do
       length(existing_items_ids) < 2099 ->
 
       query = from i in Produit,
@@ -449,7 +447,20 @@ defmodule Bebemayotte.SyncContext do
     end
   end
 
+  def group_existing_items_by_produits do
 
+    existing_items_ids = list_existing_items_ids()
+    existing_items = list_existing_items_without_images(existing_items_ids)
+    existing_produits = list_existing_produits_without_images(existing_items_ids)
+
+    Enum.map(existing_items, fn item ->
+      {item, Enum.find(existing_produits, fn produit ->
+        item[:id_produit] == produit.id_produit
+      end)}
+    end
+    )
+
+  end
 
 
 
