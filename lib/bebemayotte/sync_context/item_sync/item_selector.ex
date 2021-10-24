@@ -20,11 +20,21 @@ defmodule Bebemayotte.ItemSelector do
     end)
   end
 
+  #OLD CHECKING
+  # defp check_from_each_item do
+  #   Enum.each(list_item_pids(), fn pid ->
+  #     GenServer.cast(pid, :check_item)
+  #   end)
+  # end
+
+  #SUPPOSED ASYNC CHECKING
   defp check_from_each_item do
-    Enum.each(list_item_pids(), fn pid ->
-      GenServer.cast(pid, :check_item)
-    end)
+
+      list_item_pids()
+      |> Enum.map(fn server -> Task.async(fn -> GenServer.cast(server, :check_item) end) end)
+      |> Enum.map(&Task.await/1)
   end
+
 
   def list_item_pids do
     Enum.map(Supervisor.which_children(Bebemayotte.ItemSupervisor), fn {_,pid,_,_} ->

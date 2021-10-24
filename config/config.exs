@@ -15,6 +15,9 @@ config :bebemayotte,
 # Configures the endpoint
 config :bebemayotte, BebemayotteWeb.Endpoint,
   url: [host: "localhost"],
+  http: [
+        protocol_options: [idle_timeout: :infinity]
+        ],
   secret_key_base: "w2OJ0kInCK+f7766/jEbrPb7EQLpAc4BsZ2Voqm7lNBbm+MwCd7OgqN6Vu4HXu+i",
   render_errors: [view: BebemayotteWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Bebemayotte.PubSub,

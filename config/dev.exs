@@ -9,7 +9,11 @@ config :bebemayotte, Bebemayotte.Repo,
   hostname: "localhost",
   port: 5432,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  timeout: 480_000,
+  ownership_timeout: 120_000,
+  queue_target: 60_000,
+  queue_interval: 120_000
 
 config :bebemayotte, Bebemayotte.EBPRepo,
   adapter: Ecto.Adapters.Tds,
@@ -19,7 +23,7 @@ config :bebemayotte, Bebemayotte.EBPRepo,
   hostname: "37.59.57.29", #NS3072398
   instance: "EBP_2017",
   odbc_driver: "{SQL Server Native Client 11.0}",
-  pool_size: 50,
+  pool_size: 10,
   timeout: 480_000,
   ownership_timeout: 60_000,
   queue_target: 30_000,
@@ -37,7 +41,9 @@ config :bebemayotte, Bebemayotte.Mailer,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :bebemayotte, BebemayotteWeb.Endpoint,
-  http: [port: 4001],
+  http: [port: 4001,
+        protocol_options: [idle_timeout: :infinity]
+        ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
