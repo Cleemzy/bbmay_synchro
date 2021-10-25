@@ -5,6 +5,10 @@ defmodule Bebemayotte.SyncContext do
   alias Bebemayotte.EBPRepo
   alias Bebemayotte.Produit
 
+  def synchro_change(produit, params) do
+    Produit.synchro_changeset(produit, params)
+  end
+
   def select_test do
     query = from t in "Item",
             # limit: 2,
@@ -235,7 +239,7 @@ defmodule Bebemayotte.SyncContext do
 
   end
 
-  #MISSING "PRODUITS" INSERTION
+  #MAIN BLOCK MISSING "PRODUITS" INSERTION
   def insert_missing_produits do
 
     missing_items = list_missing_produits()
@@ -406,7 +410,9 @@ defmodule Bebemayotte.SyncContext do
 
       query = from i in Produit,
             where: i.id_produit in ^existing_items_ids,
-            select: %Produit{id_produit: i.id_produit,
+            select: %Produit{
+                      id: i.id,
+                      id_produit: i.id_produit,
                       title: i.title,
                       id_cat: i.id_cat,
                       id_souscat: i.id_souscat,
@@ -421,7 +427,9 @@ defmodule Bebemayotte.SyncContext do
 
         query1 = from i in Produit,
               where: i.id_produit in ^existing1,
-              select: %Produit{id_produit: i.id_produit,
+              select: %Produit{
+                        id: i.id,
+                        id_produit: i.id_produit,
                         title: i.title,
                         id_cat: i.id_cat,
                         id_souscat: i.id_souscat,
@@ -433,7 +441,9 @@ defmodule Bebemayotte.SyncContext do
 
         query2 = from i in Produit,
               where: i.id_produit in ^existing2,
-              select: %Produit{id_produit: i.id_produit,
+              select: %Produit{
+                        id: i.id,
+                        id_produit: i.id_produit,
                         title: i.title,
                         id_cat: i.id_cat,
                         id_souscat: i.id_souscat,
@@ -462,7 +472,177 @@ defmodule Bebemayotte.SyncContext do
 
   end
 
+  def see_items_changes do
+    group_existing_items_by_produits()
+    |> Enum.map(fn {item, produit} ->
 
+      title = cond do
+        item[:title] == produit.title ->
+          %{}
+        true ->
+          %{title: item[:title]}
+      end
+
+      image_version = cond do
+        item[:image_version] == produit.image_version ->
+          %{}
+        true ->
+          %{image_version: item[:image_version]}
+      end
+
+      id_cat = cond do
+        item[:id_cat] == produit.id_cat ->
+          %{}
+        true ->
+          %{id_cat: item[:id_cat]}
+      end
+
+      id_souscat = cond do
+        item[:id_souscat] == produit.id_souscat ->
+          %{}
+        true ->
+          %{id_souscat: item[:id_souscat]}
+      end
+
+      price = cond do
+        item[:price] == produit.price ->
+          %{}
+        true ->
+          %{price: item[:price]}
+      end
+
+      stockmax = cond do
+        item[:stockmax] == produit.stockmax ->
+          %{}
+        true ->
+          %{stockmax: item[:stockmax]}
+      end
+
+      stockstatus = cond do
+        stockmax == %{} ->
+          %{}
+        true ->
+          %{stockstatus: (stockmax[:stockmax] > 0)}
+      end
+
+      {produit,
+        %{}
+        |> Map.merge(title)
+        |> Map.merge(image_version)
+        |> Map.merge(id_cat)
+        |> Map.merge(id_souscat)
+        |> Map.merge(price)
+        |> Map.merge(stockmax)
+        |> Map.merge(stockstatus)
+      }
+
+    end)
+  end
+
+  def produits_and_changes do
+    items_changes = see_items_changes()
+
+    changes_needing_images = list_changes_needing_images(items_changes)
+
+    ids_from_needing_images = list_ids_from_needing_images(changes_needing_images)
+
+    items_images_from_ids = select_items_images_from_ids(ids_from_needing_images)
+
+    items_changes
+    |> Enum.map(fn {produit, changes} ->
+      cond do
+        is_nil(changes[:image_version]) ->
+          {produit, changes}
+
+        true ->
+          %{id_produit: _, photolink: photolink} = Enum.find(items_images_from_ids, fn map ->
+            produit.id_produit == map[:id_produit]
+          end)
+
+          encoded_photolink = encode(photolink, produit.id_produit)
+
+          {produit, changes |> Map.put(:photolink, encoded_photolink) }
+      end
+    end)
+    |> Enum.filter(fn {_, changes} ->
+      changes != %{}
+    end)
+
+  end
+
+  def list_changes_needing_images(items_changes) do
+    items_changes
+    |> Enum.filter(fn {_, changes} ->
+      not is_nil(changes[:image_version])
+    end )
+  end
+
+  def list_ids_from_needing_images(changes_needing_images) do
+    changes_needing_images
+    |> Enum.map(fn {produit, _} ->
+      produit.id_produit
+    end)
+  end
+
+  def select_items_images_from_ids(ids_from_needing_images) do
+
+    cond do
+      length(ids_from_needing_images) < 2099 ->
+
+      query = from i in "Item",
+            where: i.id in ^ids_from_needing_images,
+            select: %{id_produit: i.id,
+                      photolink: i.itemimage
+                      }
+
+      EBPRepo.all(query)
+
+      true ->
+        {needing_images1, needing_images2} = splice(ids_from_needing_images)
+
+        query1 = from i in "Item",
+              where: i.id in ^needing_images1,
+              select: %{id_produit: i.id,
+                        photolink: i.itemimage
+                        }
+
+        items_images1 = EBPRepo.all(query1)
+
+        query2 = from i in "Item",
+              where: i.id in ^needing_images2,
+              select: %{id_produit: i.id,
+                        photolink: i.itemimage
+                        }
+
+        items_images2 = EBPRepo.all(query2)
+
+        items_images1 ++ items_images2
+    end
+
+  end
+
+  # def update_produits_from_changes do
+
+  # end
+
+  def produits_changesets do
+    produits_and_changes()
+    |> Enum.map(fn {produit, changes} ->
+      synchro_change(produit, changes)
+    end)
+  end
+
+  #MAIN BLOCK UPDATE
+  def update_produits_from_changesets do
+    changesets = produits_changesets()
+    Enum.each(changesets, fn changeset ->
+      Repo.update(changeset)
+    end)
+  end
+
+  # def  do
+
+  # end
 
 
 
@@ -491,6 +671,40 @@ defmodule Bebemayotte.SyncContext do
 
   # end
 
+  def list_exceeding_produits_ids do
+    item_ids = list_item_ids()
+    produits_ids = list_produits_ids()
+
+    Enum.filter(produits_ids, fn produit_id ->
+      produit_id not in item_ids
+    end)
+  end
+
+  #MAIN BLOCK DELETION
+  def delete_exceeding_produits do
+    exceeding_produits_ids = list_exceeding_produits_ids()
+    cond do
+      length(exceeding_produits_ids) < 2099 ->
+
+        query = from i in Produit,
+              where: i.id_produit in ^exceeding_produits_ids
+        Repo.delete_all(query)
+
+        true ->
+          {exceeding_produits1, exceeding_produits2} = splice(exceeding_produits_ids)
+
+          query1 = from i in Produit,
+                where: i.id_produit in ^exceeding_produits1
+
+          Repo.delete_all(query1)
+
+          query2 = from i in Produit,
+                where: i.id_produit in ^exceeding_produits2
+
+          Repo.delete_all(query2)
+
+    end
+  end
 
 
 end
